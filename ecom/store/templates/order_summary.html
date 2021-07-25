@@ -10,10 +10,10 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Item title</th>
-            <th scope="col">Price</th>
+            <th scope="col">Nama Produk</th>
+            <th scope="col">Harga</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Total Item Price</th>
+            <th scope="col">Total Harga Produk</th>
         </tr>
         </thead>
         <tbody>
@@ -41,24 +41,24 @@
         </tr>
         {% empty %}
         <tr>
-            <td colspan='5'>Your cart is empty</td>
+            <td colspan='5'>Keranjang kamu kosong</td>
         </tr>
         <tr>
             <td colspan="5">
-            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            <a class='btn btn-primary float-right' href='/'>Kembali Belanja</a>
             </td>
         </tr>
         {% endfor %}
        
         {% if object.get_total %}
         <tr>
-            <td colspan="4"><b>Order Total</b></td>
+            <td colspan="4"><b>Sub Total</b></td>
             <td><b>Rp{{ object.get_total }}</b></td>
         </tr>
         <tr>
             <td colspan="5">
-            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Proceed to checkout</a>
-            <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+            <a class='btn btn-warning float-right ml-2' href='/checkout/'>Checkout</a>
+            <a class='btn btn-primary float-right' href='/'>Kembali Belanja</a>
             </td>
         </tr>
         {% endif %}

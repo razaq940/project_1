@@ -44,29 +44,21 @@ class Search(ListView):
                 search = self.request.GET.get("search")
                 return queryset.filter(title__contains=search)
     
-class SF(ListView):
+class K(ListView):
     model = Item
     paginate_by = 4
     template_name = "home.html"
     def get_queryset(self):
-                queryset = super(SF, self).get_queryset()
-                return queryset.filter(category='SF')
+                queryset = super(K, self).get_queryset()
+                return queryset.filter(category='K')
 
-class S(ListView):
+class KT(ListView):
     model = Item
     paginate_by = 4
     template_name = "home.html"
     def get_queryset(self):
-                queryset = super(S, self).get_queryset()
-                return queryset.filter(category='S')
-
-class SO(ListView):
-    model = Item
-    paginate_by = 4
-    template_name = "home.html"
-    def get_queryset(self):
-                queryset = super(SO, self).get_queryset()
-                return queryset.filter(category='SO')
+                queryset = super(KT, self).get_queryset()
+                return queryset.filter(category='KT')
 
 
 

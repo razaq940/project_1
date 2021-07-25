@@ -7,9 +7,8 @@ from django_countries.fields import CountryField
 
 
 CATEGORY_CHOICES = (
-    ('S', 'Sneakers'),
-    ('SF', 'Sepatu Formal'),
-    ('SO', 'Sepatu Olahraga')
+    ('K', 'Kosmetik'),
+    ('KT', 'Kesehatan')
 )
 
 LABEL_CHOICES = (
@@ -105,16 +104,7 @@ class Order(models.Model):
     proof_of_payment = models.ImageField(blank=True)
 
 
-    '''
-    1. Item added to cart
-    2. Adding a billing address
-    (Failed checkout)
-    3. Payment
-    (Preprocessing, processing, packaging etc.)
-    4. Being delivered
-    5. Received
-    6. Refunds
-    '''
+    
 
     def __str__(self):
         return self.user.username

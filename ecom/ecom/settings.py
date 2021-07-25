@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'crispy_forms',
 
@@ -103,7 +104,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -135,6 +136,8 @@ LOGIN_REDIRECT_URL = 'store:home'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
+
+USE_THOUSAND_SEPARATOR = True
 # CRISPY FORMS
 
 CRISPY_TEMPLATE_PACK ='bootstrap4'

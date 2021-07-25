@@ -1,6 +1,6 @@
 <div class="col-md-12 mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-    <span class="text-muted">Your cart</span>
+    <span class="text-muted">Pesanan kamu</span>
     <span class="badge badge-secondary badge-pill">{{ order.items.count }}</span>
     </h4>
     <ul class="list-group mb-3 z-depth-1">
@@ -25,6 +25,15 @@
     <li class="list-group-item d-flex justify-content-between">
         <span>Total (Rp)</span>
         <strong>Rp{{ order.get_total }}</strong>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <span>Transfer ke rekening BCA
+            no. rek 7401221002
+            ats. nama Abdul Razaq
+            sesuai total pesanan Rp{{ order.get_total }}
+            dan upload bukti pembayaran
+        </span>
+        
     </li>
     </ul>
 

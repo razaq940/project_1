@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
   <main>
     <div class="container">
 
@@ -8,7 +9,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
-        <span class="navbar-brand">Categories:</span>
+        <span class="navbar-brand">Kategori:</span>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -27,14 +28,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'store:S' %}">Sneakers</a>
+              <a class="nav-link" href="{% url 'store:K' %}">Kosmetik</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'store:SF' %}">Sepatu Formal</a>
+              <a class="nav-link" href="{% url 'store:KT' %}">Kesehatan</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'store:SO' %}">Sepatu Olahraga</a>
-            </li>
+            
 
           </ul>
           <!-- Links -->

@@ -38,7 +38,11 @@ class AddressAdmin(admin.ModelAdmin):
     search_fields = ['user', 'street_address', 'apartment_address', 'zip']
 
 
-admin.site.register(Item)
+
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
 admin.site.register(OrderItem)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Address, AddressAdmin)
