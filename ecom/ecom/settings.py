@@ -14,7 +14,7 @@ SECRET_KEY = 'u46!#n)&l-xbbnt7*t%g&06%=&8-=nk!ds7v^=q9gx8aql$tss'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','an-nahl-olshop.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','anahelolshop.herokuapp.com']
 
 
 # Application definition
