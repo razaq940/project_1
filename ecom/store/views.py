@@ -80,7 +80,7 @@ class StatusOrderedView(LoginRequiredMixin, View):
             }
             return render(self.request, 'ordered.html', context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "Belum ada yang kamu order.")
             return redirect("store:home")
             
     def post(self, request, *args, **kwargs):
@@ -92,11 +92,11 @@ class StatusOrderedView(LoginRequiredMixin, View):
             order = Order.objects.get(user=self.request.user, pk=id, is_paid=True)
             order.received = True
             order.save()
-            messages.success(self.request, "Done")
+            messages.success(self.request, "Berhasil")
             return redirect("store:StatusOrderedView")
 
         except ObjectDoesNotExist:
-            messages.info(self.request, "You do not have an active ordered")
+            messages.info(self.request, "Belum ada yang kamu order")
             return redirect("/")
 
 
@@ -114,7 +114,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             }
             return render(self.request, "order_summary.html", context)
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "Keranjang kamu kosong")
             return redirect("store:home")
 
 
@@ -133,18 +133,18 @@ def add_to_cart(request, slug):
         if order.items.filter(item__slug=item.slug).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "This item quantity was updated.")
+            messages.info(request, "Jumlah produk telah diubah.")
             return redirect("store:order-summary")
         else:
             order.items.add(order_item)
-            messages.info(request, "This item was added to your cart.")
+            messages.info(request, "Berhasil menambahkan produk ke keranjang.")
             return redirect("store:order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "This item was added to your cart.")
+        messages.info(request, "Berhasil menambahkan produk ke keranjang.")
         return redirect("store:order-summary")
 
 
@@ -166,13 +166,13 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             order_item.delete()
-            messages.info(request, "This item was removed from your cart.")
+            messages.info(request, "Produk ini di hapus dari keranjang.")
             return redirect("store:order-summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Produk ini tidak ada di keranjang")
             return redirect("store:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "Belum ada produk yang kamu order")
         return redirect("store:product", slug=slug)
 
 @login_required
@@ -196,13 +196,13 @@ def remove_single_item_from_cart(request, slug):
                 order_item.save()
             else:
                 order.items.remove(order_item)
-            messages.info(request, "This item quantity was updated.")
+            messages.info(request, "Jumlah produk telah diubah.")
             return redirect("store:order-summary")
         else:
-            messages.info(request, "This item was not in your cart")
+            messages.info(request, "Produk ini belum ada di keranjang kamu")
             return redirect("store:product", slug=slug)
     else:
-        messages.info(request, "You do not have an active order")
+        messages.info(request, "Belum ada yang kamu order")
         return redirect("store:product", slug=slug)
 
 
@@ -237,7 +237,7 @@ class CheckoutView(View):
                     {'default_billing_address': billing_address_qs[0]})
             return render(self.request, "checkout.html", context)
         except ObjectDoesNotExist:
-            messages.info(self.request, "You do not have an active order")
+            messages.info(self.request, "Belum ada yang kamu order")
             return redirect("store:checkout")
         
         
@@ -263,7 +263,7 @@ class CheckoutView(View):
                         order.save()
                     else:
                         messages.info(
-                            self.request, "No default shipping address available")
+                            self.request, "Belum ada defaullt alamat pengiriman")
                         return redirect('store:checkout')
                 else:
                     print("User is entering a new shipping address")
@@ -297,7 +297,7 @@ class CheckoutView(View):
 
                     else:
                         messages.info(
-                            self.request, "Please fill in the required shipping address fields")
+                            self.request, "Mohon isi alamat pengiriman")
 
                 use_default_billing = form.cleaned_data.get(
                     'use_default_billing')
@@ -326,7 +326,7 @@ class CheckoutView(View):
                         order.save()
                     else:
                         messages.info(
-                            self.request, "No default billing address available")
+                            self.request, "Tidak ada default alamat penagihan yang tersedia")
                         return redirect('store:checkout')
                 else:
                     print("User is entering a new billing address")
@@ -360,7 +360,7 @@ class CheckoutView(View):
 
                     else:
                         messages.info(
-                            self.request, "Please fill in the required billing address fields")
+                            self.request, "Mohon isi alamat penagihan")
 
                 
                 proof_of_payment = form.cleaned_data.get('proof_of_payment')
@@ -376,19 +376,19 @@ class CheckoutView(View):
                     order.ordered = True
                     order.ref_code = create_ref_code()
                     order.save()
-                    messages.success(self.request, "Your order was successful!")
+                    messages.success(self.request, "Pesanan kamu sukses!")
                     return redirect("/")
 
                 else:
                     messages.info(
-                        self.request, "Please fill in the required shipping address fields")
+                        self.request, "Mohon isi alamat pengiriman")
                     return redirect('store:checkout')
 
 
 
                
         except ObjectDoesNotExist:
-            messages.warning(self.request, "You do not have an active order")
+            messages.warning(self.request, "Belum ada yang kamu order")
             return redirect("store:order-summary")
 
 

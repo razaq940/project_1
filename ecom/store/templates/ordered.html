@@ -4,7 +4,7 @@
 {% for ordered_list in object %}
 <div class="col-md-12 mb-4">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
-    <span class="text-muted">Your Reference Code Order </span>
+    <span class="text-muted">Kode refrensi pembayaran </span>
     <span class="badge badge-secondary badge-pill">{{ ordered_list.ref_code }}</span>
     </h4>
     <ul class="list-group mb-3 z-depth-1">
@@ -12,7 +12,6 @@
     <li class="list-group-item d-flex justify-content-between lh-condensed">
         <div>
         <h6 class="my-0">{{ order_item.quantity }} x {{ order_item.item.title}}</h6>
-        <small class="text-muted">{{ order_item.item.description}}</small>
         </div>
         <span class="text-muted">Rp{{ order_item.get_final_price }}</span>
     </li>
@@ -69,11 +68,11 @@
 </div>
 {% empty %}
     <tr>
-        <td colspan='5'>This is empty</td>
+        <td colspan='5'>Tidak ada order yang aktif</td>
     </tr>
     <tr>
         <td colspan="5">
-        <a class='btn btn-primary float-right' href='/'>Continue shopping</a>
+        <a class='btn btn-primary float-right' href='/'>Kembali Belanja</a>
         </td>
     </tr>
 
